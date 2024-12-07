@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_list_app/utilities/constants.dart';
+import 'package:to_do_list_app/widgets/app_button.dart';
 import 'package:to_do_list_app/widgets/app_logo.dart';
 
 class LandingScreen extends StatelessWidget {
@@ -17,7 +18,16 @@ class LandingScreen extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const AppLogo(),
+                  AppLogo(
+                    top: -10,
+                    right: -15,
+                    logoColor: kSecondaryColor,
+                    containerHeight: 70,
+                    containerWidth: 70,
+                    containerBorderRadius: 16,
+                    checkIconSize: 50,
+                    containerBorderWidth: 2,
+                  ),
                   SizedBox(
                     height: screenSize.height * 0.05,
                   ),
@@ -44,31 +54,15 @@ class LandingScreen extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(bottom: screenSize.height * 0.08),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                fixedSize:
-                    Size(screenSize.width * 0.5, screenSize.height * 0.06),
-                backgroundColor: kSecondaryColor,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(100),
-                  ),
-                ),
-              ),
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, "/home");
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Text(
-                  "Continue",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: kPrimaryColor,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+            child: AppButton(
+              padding: const EdgeInsets.all(16),
+              backgroundColor: kSecondaryColor,
+              size: Size(screenSize.width * 0.5, screenSize.height * 0.06),
+              borderRadius: 100,
+              textColor: kPrimaryColor,
+              nextScreenName: "/home",
+              text: "Continue",
+              textSize: 16,
             ),
           ),
         ],

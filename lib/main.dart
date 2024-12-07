@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:to_do_list_app/screens/add_note_screen.dart';
 import 'package:to_do_list_app/screens/home_screen.dart';
 import 'package:to_do_list_app/screens/landing_screen.dart';
 import 'package:to_do_list_app/utilities/constants.dart';
@@ -24,6 +25,7 @@ class ToDoListApp extends StatelessWidget {
       routes: {
         "/": (context) => const LandingScreen(),
         "/home": (context) => const HomeScreen(),
+        "/add_note": (context) => const AddNoteScreen(),
       },
       initialRoute: "/",
       theme: ThemeData(

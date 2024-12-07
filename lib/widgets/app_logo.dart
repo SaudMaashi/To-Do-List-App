@@ -1,10 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_list_app/utilities/constants.dart';
 
 class AppLogo extends StatelessWidget {
   const AppLogo({
     super.key,
+    required this.logoColor,
+    required this.top,
+    required this.right,
+    required this.containerHeight,
+    required this.containerWidth,
+    required this.containerBorderRadius,
+    required this.checkIconSize,
+    required this.containerBorderWidth,
   });
+
+  final Color logoColor;
+  final double top;
+  final double right;
+  final double containerHeight;
+  final double containerWidth;
+  final double containerBorderRadius;
+  final double checkIconSize;
+  final double containerBorderWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -12,21 +28,22 @@ class AppLogo extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         Container(
-          height: 70,
-          width: 70,
+          height: containerHeight,
+          width: containerWidth,
           decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(16)),
+            borderRadius:
+                BorderRadius.all(Radius.circular(containerBorderRadius)),
             color: Colors.transparent,
-            border: Border.all(width: 2, color: Colors.white),
+            border: Border.all(width: containerBorderWidth, color: logoColor),
           ),
         ),
         Positioned(
-          bottom: 30,
-          left: 30,
+          top: top,
+          right: right,
           child: Icon(
             Icons.check,
-            color: kSecondaryColor,
-            size: 50,
+            color: logoColor,
+            size: checkIconSize,
           ),
         ),
       ],
