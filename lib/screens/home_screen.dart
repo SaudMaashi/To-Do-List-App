@@ -1,11 +1,18 @@
+import 'package:custom_sliding_segmented_control/custom_sliding_segmented_control.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_list_app/utilities/constants.dart';
 import 'package:to_do_list_app/widgets/app_button.dart';
 import 'package:to_do_list_app/widgets/app_logo.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -59,10 +66,36 @@ class HomeScreen extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              Container(
-                color: Colors.red,
-                height: 50,
-                width: 350,
+              CustomSlidingSegmentedControl<int>(
+                initialValue: 1,
+                children: const {
+                  1: Text("All List"),
+                  2: Text("Pinned"),
+                },
+                decoration: BoxDecoration(
+                  color: CupertinoColors.lightBackgroundGray,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                thumbDecoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(6),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(.3),
+                      blurRadius: 4.0,
+                      spreadRadius: 1.0,
+                      offset: const Offset(
+                        0.0,
+                        2.0,
+                      ),
+                    ),
+                  ],
+                ),
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInToLinear,
+                onValueChanged: (v) {
+                  print(v);
+                },
               ),
               SizedBox(height: screenSize.height * 0.2),
               Column(
