@@ -35,7 +35,11 @@ class AppButton extends StatelessWidget {
         ),
       ),
       onPressed: () {
-        Navigator.pushReplacementNamed(context, nextScreenName);
+        if (nextScreenName == "/home") {
+          Navigator.pushReplacementNamed(context, nextScreenName);
+        } else {
+          Navigator.pushNamed(context, nextScreenName);
+        }
       },
       child: Padding(
         padding: padding,

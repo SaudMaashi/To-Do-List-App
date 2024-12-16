@@ -39,10 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(width: screenSize.width * 0.05),
               const Text(
                 "Dooit",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
               ),
             ],
           ),
@@ -91,11 +88,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                 ),
-                duration: const Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 200),
                 curve: Curves.easeInToLinear,
-                onValueChanged: (v) {
-                  print(v);
-                },
+                onValueChanged: (value) {},
               ),
               SizedBox(height: screenSize.height * 0.2),
               Column(
