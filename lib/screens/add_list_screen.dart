@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:to_do_list_app/models/todo.dart';
+import "dart:io";
+import "package:flutter/material.dart";
+import "package:shared_preferences/shared_preferences.dart";
+import "package:to_do_list_app/models/todo.dart";
 
 class AddListScreen extends StatefulWidget {
   const AddListScreen({super.key});
@@ -10,19 +12,10 @@ class AddListScreen extends StatefulWidget {
 
 class _AddListScreenState extends State<AddListScreen> {
   var _isPinned = false;
-  final _labels = [
-    "Personal",
-    "Work",
-    "Finance",
-    "Other",
-  ];
-
+  final _labels = ["Personal", "Work", "Finance", "Other"];
   final TextEditingController _textEditingController = TextEditingController();
-
-  final List<ToDo> _tasksList = [];
-
+  final List<ToDo> _tasks = [];
   var _selectedLabel = "";
-
   var _textValue = "";
 
   @override
@@ -30,6 +23,17 @@ class _AddListScreenState extends State<AddListScreen> {
     final screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: IconButton(
+            icon: Platform.isIOS
+                ? const Icon(Icons.arrow_back_ios)
+                : const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
         toolbarHeight: screenSize.height * 0.09,
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -89,7 +93,7 @@ class _AddListScreenState extends State<AddListScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  _tasksList.isEmpty
+                  _tasks.isEmpty
                       ? Expanded(
                           child: Center(
                             child: Text(
@@ -100,9 +104,9 @@ class _AddListScreenState extends State<AddListScreen> {
                         )
                       : Expanded(
                           child: ListView.builder(
-                            itemCount: _tasksList.length,
+                            itemCount: _tasks.length,
                             itemBuilder: (context, index) {
-                              final task = _tasksList[index];
+                              final task = _tasks[index];
                               return ListTile(
                                 leading: Checkbox.adaptive(
                                   value: task.isDone,
@@ -118,7 +122,6 @@ class _AddListScreenState extends State<AddListScreen> {
                                   initialValue: task.text,
                                   onChanged: (value) {
                                     task.text = value;
-                                    _textValue = value;
                                   },
                                   style: TextStyle(
                                     decoration: task.isDone
@@ -136,7 +139,7 @@ class _AddListScreenState extends State<AddListScreen> {
                                     IconButton(
                                       onPressed: () {
                                         setState(() {
-                                          _tasksList.removeAt(index);
+                                          _tasks.removeAt(index);
                                         });
                                       },
                                       icon: const Icon(Icons.close,
@@ -148,6 +151,21 @@ class _AddListScreenState extends State<AddListScreen> {
                             },
                           ),
                         ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      FloatingActionButton(
+                        onPressed: () async {
+                          if (_tasks.isNotEmpty) {
+                            _tasks.clear();
+                            Navigator.pop(context);
+                          }
+                        },
+                        child: const Icon(Icons.add),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
                   TextField(
                     controller: _textEditingController,
                     onChanged: (value) {
@@ -159,17 +177,13 @@ class _AddListScreenState extends State<AddListScreen> {
                       suffixIcon: IconButton(
                         onPressed: () {
                           if (_textValue.isNotEmpty) {
-                            if (_textValue.isNotEmpty) {
-                              setState(() {
-                                if (_textValue.isNotEmpty) {
-                                  _tasksList.add(ToDo(
-                                    text: _textValue,
-                                  ));
-                                }
-                                _textEditingController.clear();
-                                _textValue = "";
-                              });
-                            }
+                            setState(() {
+                              _tasks.add(ToDo(
+                                text: _textValue,
+                              ));
+                              _textEditingController.clear();
+                              _textValue = "";
+                            });
                           }
                         },
                         icon: const Icon(Icons.add),

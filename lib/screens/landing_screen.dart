@@ -28,7 +28,7 @@ class LandingScreen extends StatelessWidget {
                   SizedBox(
                     height: screenSize.height * 0.05,
                   ),
-                  Text("Dooit",
+                  Text("YouCan",
                       style: Theme.of(context).textTheme.displaySmall),
                   SizedBox(height: screenSize.height * 0.02),
                   Text("Write what you need\nto do. Everyday.",
