@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class AppLogo extends StatelessWidget {
   const AppLogo({
     super.key,
-    required this.logoColor,
     required this.top,
     required this.right,
     required this.containerHeight,
@@ -12,8 +11,6 @@ class AppLogo extends StatelessWidget {
     required this.checkIconSize,
     required this.containerBorderWidth,
   });
-
-  final Color logoColor;
   final double top;
   final double right;
   final double containerHeight;
@@ -33,8 +30,7 @@ class AppLogo extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius:
                 BorderRadius.all(Radius.circular(containerBorderRadius)),
-            color: Colors.transparent,
-            border: Border.all(width: containerBorderWidth, color: logoColor),
+            border: Border.all(width: containerBorderWidth),
           ),
         ),
         Positioned(
@@ -42,7 +38,6 @@ class AppLogo extends StatelessWidget {
           right: right,
           child: Icon(
             Icons.check,
-            color: logoColor,
             size: checkIconSize,
           ),
         ),

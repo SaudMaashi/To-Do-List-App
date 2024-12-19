@@ -1,7 +1,5 @@
 import 'package:custom_sliding_segmented_control/custom_sliding_segmented_control.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:to_do_list_app/utilities/constants.dart';
 import 'package:to_do_list_app/widgets/app_button.dart';
 import 'package:to_do_list_app/widgets/app_logo.dart';
 
@@ -20,16 +18,14 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         leadingWidth: 500,
         elevation: 0,
-        backgroundColor: kSecondaryColor,
         leading: Padding(
           padding: const EdgeInsets.only(left: 20, top: 20),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              AppLogo(
+              const AppLogo(
                 top: -12,
                 right: -16,
-                logoColor: kPrimaryColor,
                 containerHeight: 40,
                 containerWidth: 40,
                 containerBorderRadius: 5,
@@ -37,10 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 containerBorderWidth: 1,
               ),
               SizedBox(width: screenSize.width * 0.05),
-              const Text(
-                "Dooit",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-              ),
+              Text("Dooit", style: Theme.of(context).textTheme.titleLarge),
             ],
           ),
         ),
@@ -49,11 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.only(right: 20, top: 10),
             child: IconButton(
               onPressed: () {},
-              icon: Icon(
-                Icons.search,
-                color: kPrimaryColor,
-                size: 40,
-              ),
+              icon: const Icon(Icons.search, size: 40),
             ),
           ),
         ],
@@ -63,30 +52,21 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Center(
           child: Column(
             children: [
-              CustomSlidingSegmentedControl<int>(
+              CustomSlidingSegmentedControl(
                 initialValue: 1,
                 children: const {
-                  1: Text("All List"),
+                  1: Text(
+                    "All List",
+                  ),
                   2: Text("Pinned"),
                 },
                 decoration: BoxDecoration(
-                  color: CupertinoColors.lightBackgroundGray,
+                  color: const Color.fromARGB(255, 202, 201, 201),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 thumbDecoration: BoxDecoration(
-                  color: Colors.white,
+                  color: const Color(0xFF63558F),
                   borderRadius: BorderRadius.circular(6),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(.3),
-                      blurRadius: 4.0,
-                      spreadRadius: 1.0,
-                      offset: const Offset(
-                        0.0,
-                        2.0,
-                      ),
-                    ),
-                  ],
                 ),
                 duration: const Duration(milliseconds: 200),
                 curve: Curves.easeInToLinear,
@@ -107,14 +87,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(height: screenSize.height * 0.04),
                   AppButton(
                     padding: const EdgeInsets.all(10),
-                    backgroundColor: kPrimaryColor,
                     size:
                         Size(screenSize.width * 0.34, screenSize.height * 0.05),
                     borderRadius: 10,
-                    textColor: kSecondaryColor,
                     nextScreenName: "/add_note",
-                    text: "+ New List",
-                    textSize: 18,
+                    text: "New List",
+                    textSize: 17.5,
                   ),
                 ],
               ),

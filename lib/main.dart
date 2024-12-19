@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:to_do_list_app/screens/add_list_screen.dart';
 import 'package:to_do_list_app/screens/home_screen.dart';
 import 'package:to_do_list_app/screens/landing_screen.dart';
-import 'package:to_do_list_app/utilities/constants.dart';
 import 'package:flutter/services.dart';
 
 void main() {
@@ -29,26 +28,16 @@ class ToDoListApp extends StatelessWidget {
       },
       initialRoute: "/",
       theme: ThemeData(
-              useMaterial3: false,
-              scaffoldBackgroundColor: kSecondaryColor,
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.black))
+              useMaterial3: true,
+              colorScheme: ColorScheme.fromSeed(
+                  seedColor: const Color.fromARGB(136, 98, 0, 255)))
           .copyWith(
-        textTheme: TextTheme(
-          displayLarge: GoogleFonts.roboto(color: kPrimaryColor),
-          displayMedium: GoogleFonts.montserrat(color: kPrimaryColor),
-          displaySmall: GoogleFonts.montserrat(color: kPrimaryColor),
-          headlineLarge: GoogleFonts.montserrat(color: kPrimaryColor),
-          headlineMedium: GoogleFonts.montserrat(color: kPrimaryColor),
-          headlineSmall: GoogleFonts.montserrat(color: kPrimaryColor),
-          titleLarge: GoogleFonts.montserrat(color: kPrimaryColor),
-          titleMedium: GoogleFonts.montserrat(color: kPrimaryColor),
-          titleSmall: GoogleFonts.montserrat(color: kPrimaryColor),
-          bodyLarge: GoogleFonts.montserrat(color: kPrimaryColor),
-          bodyMedium: GoogleFonts.montserrat(color: kPrimaryColor),
-          bodySmall: GoogleFonts.montserrat(color: kPrimaryColor),
-          labelLarge: GoogleFonts.montserrat(color: kPrimaryColor),
-          labelMedium: GoogleFonts.montserrat(color: kPrimaryColor),
-          labelSmall: GoogleFonts.montserrat(color: kPrimaryColor),
+        textTheme: const TextTheme(
+                displaySmall: TextStyle(color: Colors.black),
+                titleLarge: TextStyle(color: Colors.black),
+                bodyLarge: TextStyle(color: Colors.black))
+            .apply(
+          fontFamily: GoogleFonts.montserrat().fontFamily,
         ),
       ),
     );

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_list_app/utilities/constants.dart';
 import 'package:to_do_list_app/widgets/app_button.dart';
 import 'package:to_do_list_app/widgets/app_logo.dart';
 
@@ -10,7 +9,6 @@ class LandingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: kPrimaryColor,
       body: Column(
         children: [
           Expanded(
@@ -18,10 +16,9 @@ class LandingScreen extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  AppLogo(
+                  const AppLogo(
                     top: -10,
                     right: -15,
-                    logoColor: kSecondaryColor,
                     containerHeight: 70,
                     containerWidth: 70,
                     containerBorderRadius: 16,
@@ -31,23 +28,12 @@ class LandingScreen extends StatelessWidget {
                   SizedBox(
                     height: screenSize.height * 0.05,
                   ),
-                  const Text(
-                    "Dooit",
-                    style: TextStyle(
-                      fontSize: 40,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  Text("Dooit",
+                      style: Theme.of(context).textTheme.displaySmall),
                   SizedBox(height: screenSize.height * 0.02),
-                  const Text(
-                    "Write what you need\nto do. Everyday.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 22,
-                      color: Color(0xFFC4C4C4),
-                    ),
-                  ),
+                  Text("Write what you need\nto do. Everyday.",
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.titleLarge),
                 ],
               ),
             ),
@@ -56,10 +42,8 @@ class LandingScreen extends StatelessWidget {
             padding: EdgeInsets.only(bottom: screenSize.height * 0.08),
             child: AppButton(
               padding: const EdgeInsets.all(16),
-              backgroundColor: kSecondaryColor,
               size: Size(screenSize.width * 0.5, screenSize.height * 0.06),
               borderRadius: 100,
-              textColor: kPrimaryColor,
               nextScreenName: "/home",
               text: "Continue",
               textSize: 16,
